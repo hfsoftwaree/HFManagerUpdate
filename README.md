@@ -1,5 +1,7 @@
-HF Manager é um sistema de gerenciamento de servidores DayZ e que monitora até 3 servidores. Realiza as seguintes tarefas:
+HF Manager é um sistema de gerenciamento de servidores DayZ e que monitora até 3 servidores.
 
+TAREFAS EXECUTADAS NESTA VERSÃO
+=
 
 - Desligamento automático em horário predefinido para realização de backup;
 - Realiza backup em local definido pelo usuário, quando assim configurado;
