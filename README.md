@@ -12,11 +12,11 @@ TAREFAS EXECUTADAS NESTA VERSÃO
   sempre que o servidor reiniciar;
 - Restart em horário predefinido;
 - Monitora se o servidor está ativo e, caso tenha caído, o inicia novamente;
-- Monitora atualização de MODs e, caso encontre, realiza o seguinte procedimento:
-     Envia mensagem para o Discord informando sobre a atualização e que o servidor será encerrado;
-     Atualiza os MODs detectados;
-     Envia mensagem para o Discord informando quais MODs foram atualizados;
-     Envia mensagem para o Discord informando que os MODs já foram atualizados e que o servidor será iniciado;
+- Monitora atualização de MODs e, caso encontre, realiza o seguinte procedimento:<br>
+     -Envia mensagem para o Discord informando sobre a atualização e que o servidor será encerrado;<br>
+     -Atualiza os MODs detectados;<br>
+     -Envia mensagem para o Discord informando quais MODs foram atualizados;<br>
+     -Envia mensagem para o Discord informando que os MODs já foram atualizados e que o servidor será iniciado;<br>
   NOTA: Se o mod a ser atualizado não está em uso no servidor, será atualizado normalmente e informado no discord
   para que assim a administração possa acompanhar tais atualizações.
 - Monitora atualização do DayZ e executa os mesmos procedimentos das atualizações de MODs;
@@ -31,8 +31,8 @@ TAREFAS EXECUTADAS NESTA VERSÃO
 - Monitora mudanças no IP do modem e, caso ocorram, envia uma mensagem para o Discord informando sobre a 
   alteração.
 - Monitora spaw do KOTH e envia a hora de inicio do evento para o discord;
-      Com este procedimento, resolve-se o problema do player não saber se dará tempo de ir ao KOTH;
-      Configuração exclusiva para o KOTH informado na pagina de webhook correspondente;
+      -Com este procedimento, resolve-se o problema do player não saber se dará tempo de ir ao KOTH;
+      -Configuração exclusiva para o KOTH informado na pagina de webhook correspondente;
 - Criação do arquivo "shutdown.bat" de forma automática;
 - Possibilidade de envio do arquivo "crash" para o discord, se assim configurado.
 - Possibilidade de envio do arquivo "serverconsole" para o discord, se assim configurado.
