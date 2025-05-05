@@ -50,8 +50,22 @@ Tela de monitoramento do sistema:<br>
 Tela de configuração de diretórios:<br>
 ![Tela do Sistema](Diretorio.png)<br><br>
 Tela de configuração para atualização de MOD:<br>
-![Tela do Sistema](Tea.png)<br><br>
+![Tela do Sistema](ConfigUpdateMod.png)<br><br>
 Tela de configuração para atualização do DAYZ:<br>
-![Tela do Sistema](Tla.png)<br><br>
+![Tela do Sistema](ConfigUpdateDayz.png)<br><br>
+Tela de configuração do webhook Update Mod e Dayz:<br>
+![Tela do Sistema](DiscordUpdateModDayz.png)<br><br>
+Tela de configuração do webhook para Car Finder:<br>
+![Tela do Sistema](DiscordCarFinder.png)<br><br>
+Tela de configuração do webhook para KOTH:<br>
+![Tela do Sistema](DiscordKOTH.png)<br><br>
+Tela de configuração do webhook para Crash.log:<br>
+![Tela do Sistema](DiscordCrashLog.png)<br><br>
+Tela de configuração do webhook para Serverconsole.log:<br>
+![Tela do Sistema](DiscordServerconsoleLog.png)<br><br>
+Tela de configuração do Backup:<br>
+![Tela do Sistema](Backup.png)<br><br>
+Tela de configuração do Restart:<br>
+![Tela do Sistema](Restart.png)<br><br>
 
 
