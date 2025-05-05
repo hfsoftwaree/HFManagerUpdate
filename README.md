@@ -48,5 +48,10 @@ Nota:
 Tela de monitoramento do sistema:<br>
 ![Tela do Sistema](Tela.png)<br><br>
 Tela de configuração de diretórios:<br>
-![Tela do Sistema](Diretorio.png)
+![Tela do Sistema](Diretorio.png)<br><br>
+Tela de configuração para atualização de MOD:<br>
+![Tela do Sistema](Tea.png)<br><br>
+Tela de configuração para atualização do DAYZ:<br>
+![Tela do Sistema](Tla.png)<br><br>
+
 
