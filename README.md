@@ -39,4 +39,8 @@ HF Manager é um sistema de gerenciamento de servidores DayZ o qual realiza as s
 Nota:
 
 - O Sistema pode ser integrado ao BEC, mas se utiliza-lo. Desative o restart pelo BEC;
-- Integração, também, com o OmegaManager, mas deixe rodando somente o terminal que busca atualizações da steam.
+- Integração, também, com o OmegaManager, mas deixe rodando somente o terminal que busca atualizações da steam.  
+<br><br>
+Tela de monitoramento do sistema:<br>
+![Tela do Sistema](Tela.png)
+
