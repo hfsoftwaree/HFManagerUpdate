@@ -46,5 +46,7 @@ Nota:
 - Discord: https://discord.gg/Sfvm9TMRur
 <br><br>
 Tela de monitoramento do sistema:<br>
-![Tela do Sistema](Tela.png)
+![Tela do Sistema](Tela.png)<br><br>
+Tela de configuração de diretórios:<br>
+![Tela do Sistema](Diretorio.png)
 
