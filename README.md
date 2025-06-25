@@ -12,7 +12,7 @@ TAREFAS EXECUTADAS NESTA VERSÃO
   sempre que o servidor reiniciar;
 - Restart em horário predefinido;
 - Opção de enviar mensagem ao discord informando sobre o restart e parada para backup;
-- Opção para startar o Bec se utilizado e assim desejado;
+- Opção para iniciar o Bec, se utilizado e assim desejado;
 - Monitora se o servidor está ativo e, caso tenha caído, o inicia novamente;
 - Monitora atualização de MODs e, caso encontre, realiza o seguinte procedimento:
      Envia mensagem para o Discord informando sobre a atualização e que o servidor será encerrado;
