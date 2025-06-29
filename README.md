@@ -12,7 +12,7 @@ TAREFAS EXECUTADAS NESTA VERSÃO
   sempre que o servidor reiniciar;
 - Restart em horário predefinido;
 - Opção de enviar mensagem ao discord informando sobre o restart e parada para backup;
-- Opção para iniciar o Bec, se utilizado e assim desejado;
+- Opção para startar o Bec se utilizado e assim desejado;
 - Monitora se o servidor está ativo e, caso tenha caído, o inicia novamente;
 - Monitora atualização de MODs e, caso encontre, realiza o seguinte procedimento:
      Envia mensagem para o Discord informando sobre a atualização e que o servidor será encerrado;
@@ -24,9 +24,8 @@ TAREFAS EXECUTADAS NESTA VERSÃO
 - Monitora atualização do DayZ e executa os mesmos procedimentos das atualizações de MODs;
 - Ao atualizar o DayZ, os arquivos da pasta 'mpmission' não são atualizados automaticamente. No entanto,
   quando o Webhook estiver devidamente configurado, o administrador será notificado sobre quaisquer alterações 
-  nesses 
-  arquivos. Essa funcionalidade auxilia a equipe de administração a acompanhar as modificações realizadas na versão 
-  atual do DayZ;
+  nesses   arquivos. Essa funcionalidade auxilia a equipe de administração a acompanhar as modificações realizadas na 
+  versão atual do DayZ;
 - Sempre que o servidor é iniciado, envia para o Discord um "LOG" com a posição dos veículos no mapa. 
   Assim, caso algum player tenha perdido seu veículo durante o reinício, basta consultar a posição no canal do Discord 
   (Necessário mod MCK). Funcionalidade opcional.
@@ -43,8 +42,6 @@ TAREFAS EXECUTADAS NESTA VERSÃO
 - Possibilidade de envio do arquivo "serverconsole" para o discord, se assim configurado;
 - Remoção de log antigo de forma automática;
 - Remoção de backup antigo de forma automática, sendo possível configurar a quantidade a ser mantido.
-
-
 
 
 Nota:
