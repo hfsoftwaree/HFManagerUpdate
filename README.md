@@ -97,6 +97,6 @@ Tela de configuração da integração com BEC:<br>
 Tela de configuração da integração com Steam - Credenciais:<br>
 ![Tela do Sistema](SteamCredenciais.png)<br><br>
 Tela de configuração da integração com Steam - Gerenciar MOD:<br>
-![Tela do Sistema](SteamGerenciaMod.png)<br><br>
+![Tela do Sistema](SteamGerenciarMod.png)<br><br>
 
 
