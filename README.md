@@ -78,6 +78,8 @@ Tela de configuração do webhook Update Mod e Dayz:<br>
 ![Tela do Sistema](DiscordUpdateModDayz.png)<br><br>
 Tela de configuração do webhook para Car Finder:<br>
 ![Tela do Sistema](DiscordCarFinder.png)<br><br>
+Tela de configuração do webhook para Car Destroyed:<br>
+![Tela do Sistema](CarDestroyed.png)<br><br>
 Tela de configuração do webhook para KOTH:<br>
 ![Tela do Sistema](DiscordKOTH.png)<br><br>
 Tela de configuração do webhook para Crash.log:<br>
