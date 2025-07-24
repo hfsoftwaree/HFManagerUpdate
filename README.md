@@ -86,6 +86,8 @@ Tela de configuração do webhook para Crash.log:<br>
 ![Tela do Sistema](DiscordCrashLog.png)<br><br>
 Tela de configuração do webhook para Serverconsole.log:<br>
 ![Tela do Sistema](DiscordServerconsoleLog.png)<br><br>
+Tela de configuração do webhook para Restart.log:<br>
+![Tela do Sistema](WebhookRestart.png)<br><br>
 Tela de configuração do Backup:<br>
 ![Tela do Sistema](Backup.png)<br><br>
 Tela de configuração do Restart:<br>
