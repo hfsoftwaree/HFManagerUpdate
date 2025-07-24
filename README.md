@@ -12,9 +12,22 @@ TAREFAS EXECUTADAS NESTA VERSÃO
   sempre que o servidor reiniciar;
 - Restart em horário predefinido;
 - Opção de enviar mensagem ao discord informando sobre o restart e parada para backup;
-- Opção para startar o Bec se utilizado e assim desejado;
 - Monitora se o servidor está ativo e, caso tenha caído, o inicia novamente;
-- Monitora atualização de MODs e, caso encontre, realiza o seguinte procedimento:
+- Opção para iniciar o BEC se utilizado e assim desejado;
+- Integração com a Steam para: Baixar, atualizar e monitorar atualizações de mod na steam de forma automática;
+     IMPORTANTE: Diferente de outros gerenciadores onde seus dados de login e senha da steam ficam expostos na 
+     maquina, aqui seus dados são codificados e não são mais apresentados na forma originial. Nem mesmo para quem
+     os inseriu
+- Gerenciador de mod instalado, no qual é possível realizar as seguintes tarefas:
+     Exibe em uma única tela os seguintes dados:
+          Todos os mod baixados da steam
+          Todos os mod na pasta do servidor
+          Todos os mod em uso no BAT
+     Com estes dados apresentados é possível: Remover mod das pastas da steam e do servidor, evitando o acumulo 
+     de mod baixado sem estarem em uso
+     Opção para remover mod da linha de comando do BAT sem precisar abrir o aquivo
+     Opção para abrir o arquivo BAT em modo edição para conferência, caso necessário e assim desejado
+- Monitora atualização de MODs no servidor e, caso encontre, realiza o seguinte procedimento:
      Envia mensagem para o Discord informando sobre a atualização e que o servidor será encerrado;
      Atualiza os MODs detectados;
      Envia mensagem para o Discord informando quais MODs foram atualizados;
@@ -30,6 +43,7 @@ TAREFAS EXECUTADAS NESTA VERSÃO
   Assim, caso algum player tenha perdido seu veículo durante o reinício, basta consultar a posição no canal do Discord 
   (Necessário mod MCK). Funcionalidade opcional.
   NOTA: Opção para excluír da mensagem os veículos vanilla
+- Possíbilidade de integração com discord para envio de 'LOG' de veículos destruídos
 - Monitora mudanças no IP do modem e, caso ocorram, envia uma mensagem para o Discord informando sobre a 
   alteração.
 - Monitora spaw do KOTH e envia a hora de inicio do evento para o discord;
@@ -42,6 +56,7 @@ TAREFAS EXECUTADAS NESTA VERSÃO
 - Possibilidade de envio do arquivo "serverconsole" para o discord, se assim configurado;
 - Remoção de log antigo de forma automática;
 - Remoção de backup antigo de forma automática, sendo possível configurar a quantidade a ser mantido.
+
 
 
 Nota:
