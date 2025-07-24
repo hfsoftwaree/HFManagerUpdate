@@ -92,5 +92,11 @@ Tela de configuração do Backup:<br>
 ![Tela do Sistema](Backup.png)<br><br>
 Tela de configuração do Restart:<br>
 ![Tela do Sistema](Restart.png)<br><br>
+Tela de configuração da integração com BEC:<br>
+![Tela do Sistema](BEC.png)<br><br>
+Tela de configuração da integração com Steam - Credenciais:<br>
+![Tela do Sistema](SteamCredenciais.png)<br><br>
+Tela de configuração da integração com Steam - Gerenciar MOD:<br>
+![Tela do Sistema](SteamGerenciaMod.png)<br><br>
 
 
