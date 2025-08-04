@@ -63,7 +63,6 @@ Nota:
 
 - O Sistema pode ser integrado ao BEC, mas se utiliza-lo, desative o restart pelo BEC;
 - Integração, também, com o OmegaManager, mas deixe rodando somente o terminal que busca atualizações da steam (Não recomendado! Utilize o Steamcmd integrado ao sistema);
-- Período de teste: 30 dias;
 - Discord: https://discord.gg/Sfvm9TMRur
 <br><br>
 Tela de monitoramento do sistema:<br>
