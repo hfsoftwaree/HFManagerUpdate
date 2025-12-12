@@ -1,0 +1,30 @@
+program HFManager;
+
+uses
+  Forms,
+  Unit1 in 'Unit1.pas' {Form1},
+  frmsobre in 'frmsobre.pas' {Form2},
+  frmconfig in 'frmconfig.pas' {Form3},
+  frmconfig2 in 'frmconfig2.pas' {Form4},
+  frmconfig3 in 'frmconfig3.pas' {Form5},
+  frmrestart in 'frmrestart.pas' {Form6},
+  frmupdatemod in 'frmupdatemod.pas' {Form7},
+  frmupdatedayz in 'frmupdatedayz.pas' {Form8},
+  frmwebhoook in 'frmwebhoook.pas' {Form9},
+  frmwebhook1 in 'frmwebhook1.pas' {Form10},
+  frmwebhook2 in 'frmwebhook2.pas' {Form11},
+  frmbackup in 'frmbackup.pas' {Form12},
+  frmbackup1 in 'frmbackup1.pas' {Form13},
+  frmbackup2 in 'frmbackup2.pas' {Form14},
+  frmsobreatt in 'frmsobreatt.pas' {Form15},
+  frmpainelcontrol in 'frmpainelcontrol.pas' {Form16},
+  frmcrashlog in 'frmcrashlog.pas' {Form17};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.Title := 'HF Manager';
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

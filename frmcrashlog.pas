@@ -1,0 +1,151 @@
+unit frmcrashlog;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, ExtCtrls, jpeg, Mask, IniFiles, FileCtrl, Menus;
+
+type
+  TForm17 = class(TForm)
+    Image1: TImage;
+    Label1: TLabel;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    GroupBox4: TGroupBox;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Edit9: TEdit;
+    Edit10: TEdit;
+    Edit11: TEdit;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Edit9Exit(Sender: TObject);
+    procedure Edit10Exit(Sender: TObject);
+    procedure Edit11Exit(Sender: TObject);
+  private
+    { Private declarations }
+
+  public
+    { Public declarations }
+  end;
+
+var
+  Form17: TForm17;
+
+implementation
+
+uses Unit1;
+
+{$R *.dfm}
+
+procedure TForm17.BitBtn1Click(Sender: TObject);
+begin
+Close;
+end;
+
+procedure TForm17.BitBtn2Click(Sender: TObject);
+var
+  Ini: TIniFile;
+  CaminhoINI, Destino: string;
+begin
+  // Define o caminho do arquivo .INI dentro da pasta Config do sistema
+  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'Config\config.ini';
+
+  // Garante que a pasta Config existe
+  if not DirectoryExists(ExtractFilePath(CaminhoINI)) then
+    ForceDirectories(ExtractFilePath(CaminhoINI));
+
+  // Criar ou abrir o arquivo de configuração INI
+  Ini := TIniFile.Create(CaminhoINI);
+  try
+    // Salvar os valores dos componentes no arquivo .INI
+    Ini.WriteString('CRASH', 'logS1', Edit9.Text);
+    Ini.WriteString('CRASH', 'logS2', Edit10.Text);
+    Ini.WriteString('CRASH', 'logS3', Edit11.Text );
+
+  finally
+    // Liberar a memória
+    Ini.Free;
+  end;
+
+  // Exibe uma mensagem de confirmação
+  ShowMessage('Configuração salva com sucesso!');
+end;
+
+procedure TForm17.FormCreate(Sender: TObject);
+var
+  Ini: TIniFile;
+  CaminhoINI: string;
+begin
+  //define o nome dos groupbox conforme nome de servidores
+  //koth
+  Label10.Caption := Form1.Servidor11.Caption;
+  Label12.Caption := Form1.Servidor21.Caption;
+  Label11.Caption := Form1.Servidor31.Caption;
+
+  // Define o caminho do arquivo .INI dentro da pasta Config
+  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'Config\config.ini';
+
+  // Verifica se o arquivo .INI existe antes de tentar ler
+  if not FileExists(CaminhoINI) then Exit;
+
+  // Abre o arquivo .INI para leitura
+  Ini := TIniFile.Create(CaminhoINI);
+  try
+    // Salvar os valores dos componentes no arquivo .INI
+    Edit9.Text := Ini.ReadString('CRASH', 'logS1', '');
+    Edit10.Text := Ini.ReadString('CRASH', 'logS2', '');
+    Edit11.Text := Ini.ReadString('CRASH', 'logS3', '');
+
+  finally
+    // Libera a memória
+    Ini.Free;
+  end;
+end;
+
+//Valida campo webhook
+function ValidarWebhook(const URL: string): Boolean;
+begin
+   // Permite campo vazio (não envia mensagem se estiver em branco)
+  if Trim(URL) = '' then
+  begin
+    Result := True; // Campo vazio é considerado válido
+    Exit;
+  end;
+
+  // Verifica se é um webhook do Discord
+  Result := Pos('https://discord.com/api/webhooks/', LowerCase(URL)) = 1;
+end;
+
+procedure TForm17.Edit9Exit(Sender: TObject);
+begin
+  if not ValidarWebhook(Edit9.Text) then
+  begin
+    ShowMessage('Webhook inválido. Deixe em branco ou insira uma URL válida');
+    Edit9.SetFocus;
+  end;
+end;
+
+procedure TForm17.Edit10Exit(Sender: TObject);
+begin
+  if not ValidarWebhook(Edit10.Text) then
+  begin
+    ShowMessage('Webhook inválido. Deixe em branco ou insira uma URL válida');
+    Edit10.SetFocus;
+  end;
+end;
+
+procedure TForm17.Edit11Exit(Sender: TObject);
+begin
+  if not ValidarWebhook(Edit11.Text) then
+  begin
+    ShowMessage('Webhook inválido. Deixe em branco ou insira uma URL válida');
+    Edit11.SetFocus;
+  end;
+end;
+
+end.

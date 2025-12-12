@@ -1,0 +1,111 @@
+unit frmupdatemod;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, ExtCtrls, jpeg, Mask, ToolEdit, IniFiles, FileCtrl, Menus;
+
+type
+  TForm7 = class(TForm)
+    Image1: TImage;
+    Label1: TLabel;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    GroupBox2: TGroupBox;
+    Label5: TLabel;
+    DirectoryEdit3: TDirectoryEdit;
+    BitBtn3: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+  private
+    { Private declarations }
+
+  public
+    { Public declarations }
+  end;
+
+var
+  Form7: TForm7;
+
+implementation
+
+uses Unit1;
+
+{$R *.dfm}
+
+procedure TForm7.BitBtn1Click(Sender: TObject);
+begin
+Close;
+end;
+
+procedure TForm7.BitBtn2Click(Sender: TObject);
+var
+  Ini: TIniFile;
+  CaminhoINI: string;
+begin
+  // Define o caminho do arquivo .INI dentro da pasta Config do sistema
+  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'Config\config.ini';
+
+  // Garante que a pasta Config existe
+  if not DirectoryExists(ExtractFilePath(CaminhoINI)) then
+    ForceDirectories(ExtractFilePath(CaminhoINI));
+
+  // Criar ou abrir o arquivo de configuração INI
+  Ini := TIniFile.Create(CaminhoINI);
+  try
+    // Salvar os valores dos componentes no arquivo .INI
+    Ini.WriteString('UpdateMod', 'origem', DirectoryEdit3.Text);
+
+  finally
+    // Liberar a memória
+    Ini.Free;
+  end;
+
+  // Exibe uma mensagem de confirmação
+  ShowMessage('Configuração salva com sucesso!');
+
+  //ativa monitoramento de atualizacao de mod
+  Form1.MonMod.Enabled := True;
+  Form1.Checkbox3.Checked := True;
+  Form1.CheckBox3.Enabled := True;
+
+end;
+
+procedure TForm7.FormCreate(Sender: TObject);
+var
+  Ini: TIniFile;
+  CaminhoINI: string;
+begin
+
+  // Define o caminho do arquivo .INI dentro da pasta Config
+  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'Config\config.ini';
+
+  // Verifica se o arquivo .INI existe antes de tentar ler
+  if not FileExists(CaminhoINI) then Exit;
+
+  // Abre o arquivo .INI para leitura
+  Ini := TIniFile.Create(CaminhoINI);
+  try
+    // Lê os valores do arquivo .INI e preenche os componentes
+    DirectoryEdit3.Text := Ini.ReadString('UpdateMod', 'origem', '');
+
+  finally
+    // Libera a memória
+    Ini.Free;
+  end;
+end;
+
+procedure TForm7.BitBtn3Click(Sender: TObject);
+begin
+    if Application.MessageBox('Ao prosseguir, o sistema ficará bloqueado até o término do processo. Não tente fechar o sistema. Deseja verificar atualização de MOD agora?',
+    'Confirmação', MB_YESNO + MB_ICONQUESTION) = IDYES then
+  begin
+    Form1.MonModTimer(nil); // Chama a função manualmente
+  end;
+end;
+
+end.

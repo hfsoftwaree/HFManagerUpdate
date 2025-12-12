@@ -1,0 +1,596 @@
+unit frmrestart;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, jpeg, ExtCtrls, Mask, ETimeEd, ENumEd, EZeroEd,IniFiles,
+  Buttons;
+
+type
+  TForm6 = class(TForm)
+    Image2: TImage;
+    Label1: TLabel;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    MaskEdit1: TMaskEdit;
+    MaskEdit2: TMaskEdit;
+    MaskEdit3: TMaskEdit;
+    MaskEdit4: TMaskEdit;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label2: TLabel;
+    GroupBox3: TGroupBox;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    GroupBox4: TGroupBox;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    MaskEdit5: TMaskEdit;
+    Label14: TLabel;
+    Label15: TLabel;
+    MaskEdit6: TMaskEdit;
+    MaskEdit7: TMaskEdit;
+    MaskEdit8: TMaskEdit;
+    MaskEdit9: TMaskEdit;
+    MaskEdit10: TMaskEdit;
+    MaskEdit11: TMaskEdit;
+    MaskEdit12: TMaskEdit;
+    MaskEdit13: TMaskEdit;
+    MaskEdit14: TMaskEdit;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure MaskEdit1Exit(Sender: TObject);
+    procedure MaskEdit2Exit(Sender: TObject);
+    procedure MaskEdit3Exit(Sender: TObject);
+    procedure MaskEdit4Exit(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure MaskEdit5Exit(Sender: TObject);
+    procedure MaskEdit7Exit(Sender: TObject);
+    procedure MaskEdit8Exit(Sender: TObject);
+    procedure MaskEdit9Exit(Sender: TObject);
+    procedure MaskEdit10Exit(Sender: TObject);
+    procedure MaskEdit11Exit(Sender: TObject);
+    procedure MaskEdit12Exit(Sender: TObject);
+    procedure MaskEdit13Exit(Sender: TObject);
+    procedure MaskEdit14Exit(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form6: TForm6;
+
+implementation
+
+uses Unit1;
+
+{$R *.dfm}
+
+
+procedure TForm6.BitBtn1Click(Sender: TObject);
+begin
+Close;
+end;
+
+procedure TForm6.FormCreate(Sender: TObject);
+var
+  Ini: TIniFile;
+  CaminhoINI: string;
+begin
+  // Configura a máscara para horas e minutos
+  //MaskEdit1.EditMask := '!99:99;1;_';
+
+  GroupBox2.Caption := 'Restart ' + Form1.Servidor11.Caption;
+  GroupBox3.Caption := 'Restart ' + Form1.Servidor21.Caption;
+  GroupBox4.Caption := 'Restart ' + Form1.Servidor31.Caption;
+
+  // Define o caminho do arquivo .INI dentro da pasta Config
+  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'Config\config.ini';
+
+  // Verifica se o arquivo .INI existe antes de tentar ler
+  if not FileExists(CaminhoINI) then Exit;
+
+  // Abre o arquivo .INI para leitura
+  Ini := TIniFile.Create(CaminhoINI);
+  try
+    // Lê os valores do arquivo .INI e preenche os componentes
+    MaskEdit1.Text := Ini.ReadString('Servidor 1', 'rest1', '');
+    MaskEdit2.Text := Ini.ReadString('Servidor 1', 'rest2', '');
+    MaskEdit3.Text := Ini.ReadString('Servidor 1', 'rest3', '');
+    MAskEdit4.Text := Ini.ReadString('Servidor 1', 'rest4', '');
+
+    MaskEdit7.Text := Ini.ReadString('Servidor 2', 'rest1', '');
+    MaskEdit8.Text := Ini.ReadString('Servidor 2', 'rest2', '');
+    MaskEdit9.Text := Ini.ReadString('Servidor 2', 'rest3', '');
+    MAskEdit10.Text := Ini.ReadString('Servidor 2', 'rest4', '');
+
+    MaskEdit11.Text := Ini.ReadString('Servidor 3', 'rest1', '');
+    MaskEdit12.Text := Ini.ReadString('Servidor 3', 'rest2', '');
+    MaskEdit13.Text := Ini.ReadString('Servidor 3', 'rest3', '');
+    MAskEdit14.Text := Ini.ReadString('Servidor 3', 'rest4', '');
+
+    MaskEdit5.Text := Ini.ReadString('ParadaBackup', 'das', '');
+    MAskEdit6.Text := Ini.ReadString('ParadaBackup', 'ate', '');
+
+
+  finally
+    // Libera a memória
+    Ini.Free;
+  end;
+end;
+
+procedure TForm6.MaskEdit1Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit1.Text) = '') or (MaskEdit1.Text = '__:__') or (MaskEdit1.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit1.Text, 1, 2) + Copy(MaskEdit1.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit1.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit1.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+end;
+
+procedure TForm6.MaskEdit2Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit2.Text) = '') or (MaskEdit2.Text = '__:__') or (MaskEdit2.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit2.Text, 1, 2) + Copy(MaskEdit2.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit2.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit2.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+end;
+
+procedure TForm6.MaskEdit3Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit3.Text) = '') or (MaskEdit3.Text = '__:__') or (MaskEdit3.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit3.Text, 1, 2) + Copy(MaskEdit3.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit3.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit3.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+end;
+
+procedure TForm6.MaskEdit4Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit4.Text) = '') or (MaskEdit4.Text = '__:__') or (MaskEdit4.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit4.Text, 1, 2) + Copy(MaskEdit4.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit4.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit4.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+end;
+
+procedure TForm6.BitBtn2Click(Sender: TObject);
+var
+  Ini: TIniFile;
+  CaminhoINI: string;
+begin
+  // Define o caminho do arquivo .INI dentro da pasta Config do sistema
+  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'Config\config.ini';
+
+  // Garante que a pasta Config existe
+  if not DirectoryExists(ExtractFilePath(CaminhoINI)) then
+    ForceDirectories(ExtractFilePath(CaminhoINI));
+
+  // Criar ou abrir o arquivo de configuração INI
+  Ini := TIniFile.Create(CaminhoINI);
+  try
+    // Salvar os valores dos componentes no arquivo .INI
+    Ini.WriteString('Servidor 1', 'rest1', MaskEdit1.Text);
+    Ini.WriteString('Servidor 1', 'rest2', MaskEdit2.Text);
+    Ini.WriteString('Servidor 1', 'rest3', MaskEdit3.Text);
+    Ini.WriteString('Servidor 1', 'rest4', MaskEdit4.Text);
+
+    Ini.WriteString('Servidor 2', 'rest1', MaskEdit7.Text);
+    Ini.WriteString('Servidor 2', 'rest2', MaskEdit8.Text);
+    Ini.WriteString('Servidor 2', 'rest3', MaskEdit9.Text);
+    Ini.WriteString('Servidor 2', 'rest4', MaskEdit10.Text);
+
+    Ini.WriteString('Servidor 3', 'rest1', MaskEdit11.Text);
+    Ini.WriteString('Servidor 3', 'rest2', MaskEdit12.Text);
+    Ini.WriteString('Servidor 3', 'rest3', MaskEdit13.Text);
+    Ini.WriteString('Servidor 3', 'rest4', MaskEdit14.Text);
+
+    if (Trim(MaskEdit5.Text) = '') or (MaskEdit5.Text = '__:__') or (MaskEdit5.Text = '  :  ') then
+    Ini.WriteString('ParadaBackup', 'das', '')
+    else
+    Ini.WriteString('ParadaBackup', 'das', MaskEdit5.Text);
+
+    if (Trim(MaskEdit6.Text) = '') or (MaskEdit6.Text = '__:__') or (MaskEdit6.Text = '  :  ') then
+    Ini.WriteString('ParadaBackup', 'ate', '')
+    else
+    Ini.WriteString('ParadaBackup', 'ate', MaskEdit6.Text);
+
+    //Ini.WriteString('ParadaBackup', 'das', MaskEdit5.Text);
+    //Ini.WriteString('ParadaBackup', 'ate', MaskEdit6.Text);
+  finally
+    // Liberar a memória
+    Ini.Free;
+  end;
+
+  // Exibe uma mensagem de confirmação
+  ShowMessage('Configuração salva com sucesso!');
+end;
+
+procedure TForm6.MaskEdit5Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+  horaAtual, horaComMaisUma: TDateTime;
+  horaStr: string;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __) ou (  :  ), sai sem fazer nada
+  if (Trim(MaskEdit5.Text) = '') or (MaskEdit5.Text = '__:__') or (MaskEdit5.Text = '  :  ') then
+  begin
+  maskedit6.Text := '';
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit5.Text, 1, 2) + Copy(MaskEdit5.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit5.SetFocus;  // Retorna o foco para o MaskEdit5
+      Exit;  // Sai do campo sem fazer mais nada
+    end;
+
+    // Converte a string de hora para TDateTime (formato hora)
+    horaStr := MaskEdit5.Text;  // Pega o valor do MaskEdit5
+    horaAtual := StrToTime(horaStr);  // Converte a string para TDateTime
+
+    // Soma 1 hora à hora atual
+    //horaComMaisUma := horaAtual + 1 / 24;  // 1/24 é equivalente a 1 hora
+    horaComMaisUma := horaAtual + 10 / 1440;
+
+
+    // Exibe o novo horário no MaskEdit6
+    MaskEdit6.Text := TimeToStr(horaComMaisUma);
+    
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit5.SetFocus;  // Retorna o foco para o MaskEdit5
+    end;
+  end;
+end;
+
+procedure TForm6.MaskEdit7Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit7.Text) = '') or (MaskEdit7.Text = '__:__') or (MaskEdit7.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit7.Text, 1, 2) + Copy(MaskEdit7.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit7.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit7.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+end;
+
+procedure TForm6.MaskEdit8Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit8.Text) = '') or (MaskEdit8.Text = '__:__') or (MaskEdit8.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit8.Text, 1, 2) + Copy(MaskEdit8.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit8.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit8.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+
+end;
+
+procedure TForm6.MaskEdit9Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit9.Text) = '') or (MaskEdit9.Text = '__:__') or (MaskEdit9.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit9.Text, 1, 2) + Copy(MaskEdit9.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit9.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit9.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+
+end;
+
+procedure TForm6.MaskEdit10Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit10.Text) = '') or (MaskEdit10.Text = '__:__') or (MaskEdit10.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit10.Text, 1, 2) + Copy(MaskEdit10.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit10.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit10.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+
+end;
+
+procedure TForm6.MaskEdit11Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit11.Text) = '') or (MaskEdit11.Text = '__:__') or (MaskEdit11.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit11.Text, 1, 2) + Copy(MaskEdit11.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit11.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit11.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+end;
+
+procedure TForm6.MaskEdit12Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit12.Text) = '') or (MaskEdit12.Text = '__:__') or (MaskEdit12.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit12.Text, 1, 2) + Copy(MaskEdit12.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit12.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit12.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+end;
+
+procedure TForm6.MaskEdit13Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit13.Text) = '') or (MaskEdit13.Text = '__:__') or (MaskEdit13.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit13.Text, 1, 2) + Copy(MaskEdit13.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit13.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit13.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+
+end;
+
+procedure TForm6.MaskEdit14Exit(Sender: TObject);
+var
+  horaMinuto: Integer;
+begin
+  // Se o campo estiver vazio ou com apenas a máscara (__ : __), sai sem fazer nada
+  if (Trim(MaskEdit14.Text) = '') or (MaskEdit14.Text = '__:__') or (MaskEdit14.Text = '  :  ')then
+  begin
+    Exit;  // Sai do campo sem realizar qualquer validação ou mensagem
+  end;
+
+  // Concatena a hora e os minutos para comparar diretamente como um número
+  try
+    horaMinuto := StrToInt(Copy(MaskEdit14.Text, 1, 2) + Copy(MaskEdit14.Text, 4, 2));
+
+    // Verifica se a hora/minuto informada é maior que 2359
+    if horaMinuto > 2359 then
+    begin
+      ShowMessage('Hora inválida! Insira uma hora no formato 00:00 a 23:59.');
+      MaskEdit14.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  except
+    on E: Exception do
+    begin
+      // Exibe uma mensagem personalizada ao usuário caso ocorra um erro
+      ShowMessage('Formato de hora inválido. Certifique-se de inserir no formato 00:00.');
+      MaskEdit14.SetFocus;  // Retorna o foco para o MaskEdit4
+    end;
+  end;
+end;
+
+end.

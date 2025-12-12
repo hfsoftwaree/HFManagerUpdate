@@ -1,0 +1,231 @@
+unit frmconfig3;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, ExtCtrls, jpeg, Mask, IniFiles, FileCtrl, Menus, ShellAPI,
+  RxToolEdit;
+
+type
+  TForm5 = class(TForm)
+    GroupBox1: TGroupBox;
+    Image1: TImage;
+    Label1: TLabel;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    BitBtn2: TBitBtn;
+    Label6: TLabel;
+    DirectoryEdit1: TDirectoryEdit;
+    DirectoryEdit2: TDirectoryEdit;
+    FilenameEdit1: TFilenameEdit;
+    FilenameEdit2: TFilenameEdit;
+    Label8: TLabel;
+    FilenameEdit4: TFilenameEdit;
+    Label5: TLabel;
+    DirectoryEdit3: TDirectoryEdit;
+    BitBtn3: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+  private
+    { Private declarations }
+
+  public
+    { Public declarations }
+  end;
+
+var
+  Form5: TForm5;
+
+implementation
+
+uses Unit1;
+
+{$R *.dfm}
+
+procedure TForm5.BitBtn1Click(Sender: TObject);
+begin
+Close;
+end;
+
+procedure TForm5.BitBtn2Click(Sender: TObject);
+var
+  Ini: TIniFile;
+  CaminhoINI, Destino: string;
+begin
+  // Define o caminho do arquivo .INI dentro da pasta Config do sistema
+  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'Config\config.ini';
+
+  // Garante que a pasta Config existe
+  if not DirectoryExists(ExtractFilePath(CaminhoINI)) then
+    ForceDirectories(ExtractFilePath(CaminhoINI));
+
+  // Criar ou abrir o arquivo de configuração INI
+  Ini := TIniFile.Create(CaminhoINI);
+  try
+    // Salvar os valores dos componentes no arquivo .INI
+    Ini.WriteString('Servidor 3', 'Start', FileNameEdit1.FileName);
+    Ini.WriteString('Servidor 3', 'Shutdown', FileNameEdit2.FileName);
+    Ini.WriteString('Servidor 3', 'Profile', DirectoryEdit1.Text );
+    Ini.WriteString('Servidor 3', 'Log', DirectoryEdit2.Text );
+    Ini.WriteString('Servidor 3', 'mpmission', DirectoryEdit3.Text);    
+
+
+    Ini.WriteString('Servidor 3', 'exe', FileNameEdit4.Text);
+
+    // Define o destino como o diretório do arquivo informado em FileNameEdit4, sem "\" no final
+    Destino := ExcludeTrailingPathDelimiter(ExtractFilePath(FileNameEdit4.FileName));
+    Ini.WriteString('UpdateMod', 'destinoserver3', Destino);
+
+    // Define o destino como o diretório do arquivo informado em FileNameEdit4, sem "\" no final
+    Destino := ExcludeTrailingPathDelimiter(ExtractFilePath(FileNameEdit4.FileName));
+    Ini.WriteString('UpdateDayz', 'destinoserver3', Destino);        
+
+  finally
+    // Liberar a memória
+    Ini.Free;
+  end;
+
+  // Exibe uma mensagem de confirmação
+  ShowMessage('Configuração salva com sucesso!');
+
+end;
+
+procedure TForm5.FormCreate(Sender: TObject);
+var
+  Ini: TIniFile;
+  CaminhoINI: string;
+begin
+  //Define nome do GroupBox
+  Label1.Caption := 'Parametros ' + Form1.Servidor31.Caption;
+
+
+  // Define o caminho do arquivo .INI dentro da pasta Config
+  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'Config\config.ini';
+
+  // Verifica se o arquivo .INI existe antes de tentar ler
+  if not FileExists(CaminhoINI) then Exit;
+
+  // Abre o arquivo .INI para leitura
+  Ini := TIniFile.Create(CaminhoINI);
+  try
+    // Lê os valores do arquivo .INI e preenche os componentes
+    FileNameEdit1.FileName := Ini.ReadString('Servidor 3', 'Start', '');
+    FileNameEdit2.FileName := Ini.ReadString('Servidor 3', 'Shutdown', '');
+    DirectoryEdit1.Text := Ini.ReadString('Servidor 3', 'Profile', '');
+    DirectoryEdit2.Text := Ini.ReadString('Servidor 3', 'Log', '');
+    DirectoryEdit3.Text := Ini.ReadString('Servidor 3', 'mpmission', '');
+
+    FileNameEdit4.FileName := Ini.ReadString('Servidor 3', 'exe', '');
+
+  finally
+    // Libera a memória
+    Ini.Free;
+  end;
+end;
+
+procedure TForm5.BitBtn3Click(Sender: TObject);
+var
+  Ini: TIniFile;
+  CaminhoExe, NomeExe, PastaServidor, BatPath, BatContent: string;
+  Resp: Integer;
+begin
+  if FileNameEdit4.Text = '' then
+    begin
+      Application.MessageBox('Local do executavel do Dayz deve ser informado!', 'Informação', mb_Ok + mb_IconInformation);
+      FileNameEdit4.SetFocus;
+    end;
+
+  if (FileNameEdit4.Text <> '')  then
+  begin
+  If Application.MessageBox('Confirma criação do arquivo shutdowns3.bat?', 'Confirmação',
+  mb_YesNo + mb_ICONQUESTION) = idYes then
+  begin
+
+  Ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'Config\config.ini');
+  try
+    CaminhoExe := Ini.ReadString('Servidor 3', 'exe', '');
+    if not FileExists(CaminhoExe) then
+    begin
+      //ShowMessage('O caminho do executável especificado no INI não existe:' + sLineBreak + CaminhoExe);
+      Exit;
+    end;
+
+    NomeExe := ExtractFileName(CaminhoExe);
+    PastaServidor := ExtractFilePath(CaminhoExe);
+    BatPath := PastaServidor + 'shutdowns3.bat';
+
+    BatContent :=
+      '@echo off' + sLineBreak +
+      'title Encerrando Servidor DayZ' + sLineBreak +
+      '' + sLineBreak +
+      'set ProcessName=' + NomeExe + sLineBreak +
+      'set MaxAttempts=5' + sLineBreak +
+      'set Attempt=0' + sLineBreak +
+      '' + sLineBreak +
+      'echo Encerrando servidor %ProcessName%, aguarde...' + sLineBreak +
+      'taskkill /IM %ProcessName% /T >nul 2>&1' + sLineBreak +
+      'timeout /t 5 /nobreak >nul' + sLineBreak +
+      '' + sLineBreak +
+      ':check_process' + sLineBreak +
+      ':: Verifica se o processo ainda está rodando' + sLineBreak +
+      'tasklist | findstr /I "%ProcessName%" >nul' + sLineBreak +
+      'if %errorlevel%==0 (' + sLineBreak +
+      '    set /a Attempt+=1' + sLineBreak +
+      '    echo Tentativa %Attempt%: O processo %ProcessName% ainda está ativo...' + sLineBreak +
+      '' + sLineBreak +
+      '    if %Attempt% LSS %MaxAttempts% (' + sLineBreak +
+      '        timeout /t 5 /nobreak >nul' + sLineBreak +
+      '        goto check_process' + sLineBreak +
+      '    ) else (' + sLineBreak +
+      '        echo Maximo de tentativas atingido, forçando encerramento...' + sLineBreak +
+      '        taskkill /IM %ProcessName% /F /T >nul 2>&1' + sLineBreak +
+      '    )' + sLineBreak +
+      ')' + sLineBreak +
+      '' + sLineBreak +
+      'echo Servidor %ProcessName% encerrado com sucesso!' + sLineBreak +
+      'exit';
+
+    with TStringList.Create do
+    try
+      Text := BatContent;
+      SaveToFile(BatPath);
+    finally
+      Free;
+    end;
+
+    // Pergunta se o usuário quer abrir o diretório
+    Resp := MessageDlg('Arquivo BAT criado com sucesso em:' + sLineBreak + BatPath + sLineBreak +
+                       'Deseja abrir a pasta agora?',
+                       mtInformation, [mbYes, mbNo], 0);
+
+    if Resp = mrYes then
+      ShellExecute(0, 'open', PChar(PastaServidor), nil, nil, SW_SHOWNORMAL);
+
+  finally
+    Ini.Free;
+
+    if FileNameEdit2.Text = '' then
+      begin
+        FileNameEdit2.Text := BatPath;
+        bitbtn2.Click ;        
+        //showmessage('ok');
+        end
+        else
+        begin
+    if FileNameEdit2.Text <> '' then
+      begin
+        //showmessage('ja preenchido');
+      end;
+      end;    
+  end;
+  end;
+  end;
+end;
+
+end.

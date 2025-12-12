@@ -1,0 +1,163 @@
+unit frmwebhook2;
+
+interface
+
+uses
+  Windows, ShellAPI, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, ExtCtrls, jpeg, Mask, IniFiles, FileCtrl, Menus;
+
+type
+  TForm11 = class(TForm)
+    Image1: TImage;
+    Label1: TLabel;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    GroupBox4: TGroupBox;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Edit9: TEdit;
+    Edit10: TEdit;
+    Edit11: TEdit;
+    Label2: TLabel;
+    Edit1: TEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Edit9Exit(Sender: TObject);
+    procedure Edit10Exit(Sender: TObject);
+    procedure Edit11Exit(Sender: TObject);
+    procedure Label5Click(Sender: TObject);
+  private
+    { Private declarations }
+
+  public
+    { Public declarations }
+  end;
+
+var
+  Form11: TForm11;
+
+implementation
+
+uses Unit1;
+
+{$R *.dfm}
+
+procedure TForm11.BitBtn1Click(Sender: TObject);
+begin
+Close;
+end;
+
+procedure TForm11.BitBtn2Click(Sender: TObject);
+var
+  Ini: TIniFile;
+  CaminhoINI, Destino: string;
+begin
+  // Define o caminho do arquivo .INI dentro da pasta Config do sistema
+  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'Config\config.ini';
+
+  // Garante que a pasta Config existe
+  if not DirectoryExists(ExtractFilePath(CaminhoINI)) then
+    ForceDirectories(ExtractFilePath(CaminhoINI));
+
+  // Criar ou abrir o arquivo de configuração INI
+  Ini := TIniFile.Create(CaminhoINI);
+  try
+    // Salvar os valores dos componentes no arquivo .INI
+    Ini.WriteString('KOTH', 'avisoS1', Edit9.Text);
+    Ini.WriteString('KOTH', 'avisoS2', Edit10.Text);
+    Ini.WriteString('KOTH', 'avisoS3', Edit11.Text );
+    Ini.WriteString('KOTH', 'localS1', Edit1.Text );    
+
+  finally
+    // Liberar a memória
+    Ini.Free;
+  end;
+
+  // Exibe uma mensagem de confirmação
+  ShowMessage('Configuração salva com sucesso!');
+end;
+
+procedure TForm11.FormCreate(Sender: TObject);
+var
+  Ini: TIniFile;
+  CaminhoINI: string;
+begin
+  //define o nome dos groupbox conforme nome de servidores
+  //koth
+  Label10.Caption := Form1.Servidor11.Caption;
+  Label12.Caption := Form1.Servidor21.Caption;
+  Label11.Caption := Form1.Servidor31.Caption;
+
+  // Define o caminho do arquivo .INI dentro da pasta Config
+  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'Config\config.ini';
+
+  // Verifica se o arquivo .INI existe antes de tentar ler
+  if not FileExists(CaminhoINI) then Exit;
+
+  // Abre o arquivo .INI para leitura
+  Ini := TIniFile.Create(CaminhoINI);
+  try
+    // Salvar os valores dos componentes no arquivo .INI
+    Edit9.Text := Ini.ReadString('KOTH', 'avisoS1', '');
+    Edit10.Text := Ini.ReadString('KOTH', 'avisoS2', '');
+    Edit11.Text := Ini.ReadString('KOTH', 'avisoS3', '');
+    Edit1.Text := Ini.ReadString('KOTH', 'localS1', '');    
+  finally
+    // Libera a memória
+    Ini.Free;
+  end;
+end;
+
+procedure TForm11.Label5Click(Sender: TObject);
+begin
+ ShellExecute(0, 'open', 'https://steamcommunity.com/sharedfiles/filedetails/?id=3348696867', nil, nil, SW_SHOWNORMAL);
+end;
+
+//Valida campo webhook
+function ValidarWebhook(const URL: string): Boolean;
+begin
+  // Permite campo vazio (não envia mensagem se estiver em branco)
+  if Trim(URL) = '' then
+  begin
+    Result := True; // Campo vazio é considerado válido
+    Exit;
+  end;
+
+  // Verifica se é um webhook do Discord
+  Result := Pos('https://discord.com/api/webhooks/', LowerCase(URL)) = 1;
+end;
+
+procedure TForm11.Edit9Exit(Sender: TObject);
+begin
+  if not ValidarWebhook(Edit9.Text) then
+  begin
+    ShowMessage('Webhook inválido. Deixe em branco ou insira uma URL válida');
+    Edit9.SetFocus;
+  end;
+end;
+
+procedure TForm11.Edit10Exit(Sender: TObject);
+begin
+  if not ValidarWebhook(Edit10.Text) then
+  begin
+    ShowMessage('Webhook inválido. Deixe em branco ou insira uma URL válida');
+    Edit10.SetFocus;
+  end;
+end;
+
+procedure TForm11.Edit11Exit(Sender: TObject);
+begin
+  if not ValidarWebhook(Edit11.Text) then
+  begin
+    ShowMessage('Webhook inválido. Deixe em branco ou insira uma URL válida');
+    Edit11.SetFocus;
+  end;
+end;
+
+end.
