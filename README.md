@@ -100,5 +100,9 @@ Tela de configuração da integração com Steam - Baixar MOD:<br>
 ![Tela do Sistema](SteamBaixarMod.png)<br><br>
 Tela de configuração da integração com Steam - Gerenciar MOD:<br>
 ![Tela do Sistema](SteamGerenciarMod.png)<br><br>
+Tela de configuração do arquivo ServerDZ.cfg:<br>
+![Tela do Sistema](editcfg.png)<br><br>
+Tela de configuração de parametros:<br>
+![Tela do Sistema](painelcontrol.png)<br><br>
 
 
