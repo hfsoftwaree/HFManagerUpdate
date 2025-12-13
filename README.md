@@ -1,6 +1,8 @@
 !! SISTEMA ATIVO !!<br><br>
 HF Manager é um sistema de gerenciamento de servidores DayZ e que monitora até 3 servidores.
 
+Instalador: https://github.com/hfsoftwaree/HFManagerUpdate/releases/download/installer/hfmanager.exe
+
 TAREFAS EXECUTADAS NESTA VERSÃO
 =
 
