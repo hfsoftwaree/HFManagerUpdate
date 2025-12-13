@@ -1,7 +1,6 @@
 !! SISTEMA ATIVO !!<br><br>
 HF Manager é um sistema de gerenciamento de servidores DayZ e que monitora até 3 servidores.
 
-Instalador: https://github.com/hfsoftwaree/HFManagerUpdate/releases/download/installer/hfmanager.exe
 
 TAREFAS EXECUTADAS NESTA VERSÃO
 =
@@ -67,6 +66,7 @@ Nota:
 - O Sistema pode ser integrado ao BEC, mas se utiliza-lo, desative o restart pelo BEC;
 - Integração, também, com o OmegaManager, mas deixe rodando somente o terminal que busca atualizações da steam (Não recomendado! Utilize o Steamcmd integrado ao sistema);
 - Discord: https://discord.gg/Sfvm9TMRur
+- Instalador: https://github.com/hfsoftwaree/HFManagerUpdate/releases/download/installer/hfmanager.exe
 - Como configurar: https://www.youtube.com/watch?v=sF_Hs_HkSzE&t=186s
 <br><br>
 Tela de monitoramento do sistema:<br>
