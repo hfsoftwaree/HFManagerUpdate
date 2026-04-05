@@ -9,6 +9,25 @@ O **HF Manager** é um sistema de gerenciamento de servidores **DayZ**, com supo
 - Codificação das **credenciais da Steam**, garantindo maior segurança
 - Integração e monitoramento do **BEC**
 - Agendamento automático de alterações no arquivo **ServerDZ.cfg**<br><br><br>
+---
+
+## INTEGRAÇÕES
+- Steam
+- Discord
+- BEC
+- RCON
+---
+
+## ADDONS COMPLEMENTARES
+- HFMFixMCK.pbo
+  
+O que ele faz?
+- Gera o arquivo HFM_Vehicle_fixMCK_.log, responsável por extrair o nome de classe dos veículos existentes no mapa, além de gerar log de interação com os veículos. O arquivo de log será gerado na pasta "profile"
+
+Por que ele é necessário?
+- Sem ele não é possiível utilizar a função: "Não mostrar veículos da lista" disponível em: Configurações > Webhook > Car in map (MCK)
+- Também não é possível enviar qualquer log ao discord referente a veículos
+---
 
 TAREFAS EXECUTADAS
 ---
