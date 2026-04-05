@@ -1,4 +1,5 @@
-## HF Manager - Ativo desde 01/2025<br><br>
+## HF Manager
+Status: Ativo desde 01/2025<br><br><br>
 
 O **HF Manager** é um sistema de gerenciamento de servidores **DayZ**, com suporte para monitoramento de até **3 servidores simultâneos**.
 
