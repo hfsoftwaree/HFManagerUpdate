@@ -27,6 +27,13 @@ O que ele faz?
 Por que ele é necessário?
 - Sem ele não é possiível utilizar a função: "Não mostrar veículos da lista" disponível em: Configurações > Webhook > Car in map (MCK)
 - Também não é possível enviar qualquer log ao discord referente a veículos
+
+Instalação
+- A adição ou remoção deste "pbo" ocorre de forma automática desde que utilizado o sistema para adicionar ou remover mod's do arquivo "BAT". Este "pbo" é somente lado servidor e será copiado para a pasta "Addons" do servidor.
+
+Nota:
+
+- Este "pbo" possuí dependência do mod "MuchCarKey", portanto se remover o "MuchCarKey" do seu arquivo "BAT" de forma manual, remova também este ".pbo" da pasta "Addons" do seu servidor
 ---
 
 TAREFAS EXECUTADAS
