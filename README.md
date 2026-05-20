@@ -124,6 +124,18 @@ TAREFAS EXECUTADAS
 
 ### SHUTDOWN
    - Criação do arquivo "shutdown.bat" de forma automática;
+
+### RCON
+Encerramento e Restart realizados, por padrão, via comando RCON, executando os seguintes procedimentos:
+   - Bloqueia o servidor para novas conexões;
+   - Envia uma mensagem in-game informando sobre o encerramento/restart;
+   - Expulsa todos os jogadores antes do encerramento;
+   - Salva todo o progresso do jogo;
+   - Encerra o servidor.
+
+NOTA:<br>
+Caso algo falhe, o sistema continuará realizando o encerramento/restart via BAT, caso esteja configurado dessa forma
+ 
 ---
 <br>
 
