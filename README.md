@@ -173,5 +173,7 @@ Tela de configuração de parametros:<br>
 ![Tela do Sistema](painelcontrol.png)<br><br>
 Tela de configuração de Politica de Logs:<br>
 ![Tela do Sistema](PoliticaLogs.png)<br><br>
+Tela de configuração de RCON:<br>
+![Tela do Sistema](Rcon.png)<br><br>
 
 
