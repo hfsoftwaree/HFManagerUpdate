@@ -68,7 +68,7 @@ TAREFAS EXECUTADAS
 
 ### STEAM
    - Integração com a Steam para: Baixar, atualizar e monitorar atualizações de mod de forma automática;
-   - Login e senha da steam são codificados, evitando sua exposição e mantendo a segurança dos dados.
+   - Login e senha da steam são criptografados, evitando sua exposição e mantendo a segurança dos dados.
 
 ### GERENCIADOR DE MOD INSTALADO
    - Exibe em uma única tela os seguintes dados
