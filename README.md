@@ -144,7 +144,7 @@ Integração com envio de dados para as seguintes tarefas:
    - Car Virtualized;
    - KOTH;
    - Crash.log;
-   - Serverconsole.log
+   - Serverconsole.log;
    - Restart
      
 ---
