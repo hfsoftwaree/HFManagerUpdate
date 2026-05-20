@@ -135,7 +135,18 @@ Encerramento e Restart realizados, por padrão, via comando RCON, executando os 
 
 NOTA:<br>
 Caso algo falhe, o sistema continuará realizando o encerramento/restart via BAT, caso esteja configurado dessa forma
- 
+
+### DISCORD
+Integração com envio de dados para as seguintes tarefas:
+   - Update de MOD e DAYZ;
+   - Car in Map;
+   - Car Destroyed;
+   - Car Virtualized;
+   - KOTH;
+   - Crash.log;
+   - Serverconsole.log
+   - Restart
+     
 ---
 <br>
 
