@@ -4,12 +4,18 @@ Status: Ativo desde 01/2025<br><br><br>
 O **HF Manager** é um sistema de gerenciamento de servidores **DayZ**, com suporte para monitoramento de até **3 servidores simultâneos**.
 
 ### ✨ Principais diferenciais
-- Backup automático com sincronização na nuvem (**Google Drive**)
-- Integração com **mods de terceiros** e com o **Discord**
-- Envio automático dos arquivos **crash.log** e **serverconsole.log** para canais do Discord
-- Codificação das **credenciais da Steam**, garantindo maior segurança
-- Integração e monitoramento do **BEC**
-- Agendamento automático de alterações no arquivo **ServerDZ.cfg**<br><br><br>
+
+- **Gerenciamento centralizado:** monitoramento e administração de até 3 servidores DayZ simultaneamente.
+- **Automação de tarefas:** controle de inicialização, reinicialização, encerramento, backups e atualizações de mods e do DayZ.
+- **Verificação de integridade:** identificação e restauração de arquivos ausentes ou modificados, com opções de verificação parcial e total.
+- **Backup com sincronização na nuvem:** criação de cópias de segurança personalizadas, sincronização com o Google Drive e remoção automática de backups antigos.
+- **Gerenciamento inteligente de mods:** comparação entre mods baixados, instalados e configurados no BAT, facilitando a identificação e remoção de mods não utilizados.
+- **Integração com Discord:** notificações automatizadas sobre atualizações, reinicializações, eventos, veículos, alterações de IP e logs administrativos.
+- **Integração com RCON e BEC:** controle do encerramento e reinicialização dos servidores, além de inicialização e monitoramento do BEC.
+- **Preservação de configurações personalizadas:** recursos específicos para evitar alterações indesejadas em arquivos de missões e configurações durante a verificação parcial de integridade e as atualizações do DayZ.
+- **Agendamento de configurações:** programação de alterações no arquivo `ServerDZ.cfg` para o próximo reinício, sem necessidade de interromper o servidor imediatamente.
+- **Segurança das credenciais:** criptografia das credenciais da Steam para reduzir sua exposição.
+- **Organização e gerenciamento de logs:** separação de arquivos por data, definição de políticas de retenção e remoção automática de logs antigos.
 ---
 
 ## INTEGRAÇÕES
