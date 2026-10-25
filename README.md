@@ -66,6 +66,22 @@ TAREFAS EXECUTADAS
      quando o Webhook estiver devidamente configurado, o administrador será notificado sobre quais arquivos 
      sofreram alterações. Essa funcionalidade evita sobscrever arquivos modificados em uso no servidor.
 
+### VERIFICAÇÃO DE INTEGRIDADE DE ARQUIVOS DO DAYZ
+   - Verificação parcial dos arquivos do DayZ, utilizando uma lista de arquivos e pastas autorizados, preservando 
+     configurações personalizadas do servidor;
+   - Verificação total dos arquivos do DayZ, comparando os arquivos da instalação de origem com os arquivos do 
+     servidor;
+   - Identificação de arquivos ausentes ou modificados, com restauração automática a partir dos arquivos da origem;
+   - Opção de seleção entre verificação parcial e total, permitindo adequar o procedimento ao tipo de servidor;
+   - Verificação do estado do servidor antes de iniciar o procedimento, impedindo a execução enquanto o servidor estiver 
+     ativo.
+
+   NOTA:
+     A verificação parcial é indicada para servidores PvE com configurações personalizadas, pois não será alterado, 
+     modificado ou substituido nenhum arquivo da pasta MPMISSIONS e PROFILE . 
+     A verificação total é indicada para servidores vanilla e pode substituir arquivos de configuração modificados da pasta
+     MPMISSIONS e PROFILE.
+
 ### STEAM
    - Integração com a Steam para: Baixar, atualizar e monitorar atualizações de mod de forma automática;
    - Login e senha da steam são criptografados, evitando sua exposição e mantendo a segurança dos dados.
