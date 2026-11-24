@@ -28,8 +28,21 @@ O **HF Manager** é um sistema de gerenciamento de servidores **DayZ**, com supo
 ## ADDONS COMPLEMENTARES
 - HFMFixMCK.pbo
   
-O que ele faz?
-- Gera o arquivo HFM_Vehicle_fixMCK_.log, responsável por extrair o nome de classe dos veículos existentes no mapa, além de gerar log de interação com os veículos. O arquivo de log será gerado na pasta "profile"
+O que ele faz?<br>
+Gera o arquivo **HFM_Vehicles_FixMck_....log** na pasta "profile" (um novo a cada restart), registrando, para veículos com ID do MuchCarKey:
+
+- Veículos e barcos existentes no mapa: nome, classname, ID MCK, posição e tempo de vida restante;
+- Entrada e saída de veículos, informando o assento ocupado;
+- Motor ligado e desligado;
+- Veículo empurrado por jogador;
+- Veículo destruído, informando o jogador e a arma (quando identificáveis);
+- Veículo deletado (remoção da entidade), com a vida restante no banco de dados.
+
+Limitações:
+
+- Veículos sem ID MCK não são registrados.
+- Barcos são registrados apenas na inicialização.
+- Em destruição por colisão, explosão ou zumbis, o autor e a arma podem aparecer como UNKNOWN.
 
 Por que ele é necessário?
 - Sem ele não é possiível utilizar a função: "Não mostrar veículos da lista" disponível em: Configurações > Webhook > Car in map (MCK)
