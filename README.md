@@ -186,8 +186,8 @@ Integração com envio de dados para as seguintes tarefas:
 <br>
 
 - Discord: https://discord.gg/Sfvm9TMRur
-- Instalador: https://github.com/hfsoftwaree/HFManagerUpdate/releases/download/installer/hfmanager.exe (Video desatualizado, mas ainda válido)
-- Como configurar: https://www.youtube.com/watch?v=sF_Hs_HkSzE&t=186s
+- Instalador: [https://github.com/hfsoftwaree/HFManagerUpdate/releases/download/installer/hfmanager.exe](https://github.com/hfsoftwaree/HFManagerUpdate/releases/download/installer/hfmanager_installer.exe) 
+- Como configurar: https://www.youtube.com/watch?v=sF_Hs_HkSzE&t=186s (Video desatualizado, mas ainda válido)
 <br><br>
 Tela de monitoramento do sistema:<br>
 ![Tela do Sistema](Tela.png)<br><br>
