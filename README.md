@@ -27,7 +27,7 @@ O **HF Manager** é um sistema de gerenciamento de servidores **DayZ**, com supo
 
 ## ADDONS COMPLEMENTARES
 - HFMFixMCK.pbo<br>
-https://github.com/hfsoftwaree/Dayz_Mod_HFMFixMCK/blob/main/README.md
+https://github.com/hfsoftwaree/Dayz_Mod_HFMFixMCK
   
 O que ele faz?<br>
 Gera o arquivo **HFM_Vehicles_FixMck_....log** na pasta "profile" (um novo a cada restart), registrando, para veículos com ID do MuchCarKey:
